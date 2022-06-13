@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex flex-row  mb-3">
+            <div>
+                <h3>Create new worker:</h3>
+            </div>
+            <div>
+                <a class="btn" href="create.php">
+                    <i class="material-icons text-success">add</i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-fit mt-5 table-dark table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for worker in workers %}
+                    <tr>
+                        <th scope="row">{{ worker.getID() }}</th>
+                        <td>{{ worker.getName() }}</td>
+                        <td>{{ worker.getAddress() }}</td>
+                        <td>{{ worker.getSalary() }}</td>
+                        <td>
+                            <div class="d-flex flex-row  mb-3">
+                                <div>
+                                    <a class="btn" href="update.php?id={{ worker.getID() }}">
+                                        <i class="material-icons text-warning">edit</i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="btn" href="delete.php?id={{ worker.getID() }}">
+                                        <i class="material-icons text-danger">delete</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
